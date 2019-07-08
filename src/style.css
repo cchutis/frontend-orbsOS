@@ -1,0 +1,88 @@
+/* Universal Styles */
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #2B303C;
+}
+
+textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
+}
+
+/* Window Styling */
+.window {
+  position: fixed;
+  width: 540px;
+  height: 540px;
+  background-color: #FFF;
+  border-radius: 10px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.window.-show { opacity: 1 }
+
+.window.-animating {
+  -webkit-transition: transform 200ms ease-out;
+  -moz-transition: transform 200ms ease-out;
+  -o-transition: transform 200ms ease-out;
+  transition: transform 200ms ease-out;
+}
+
+.window .window-bar {
+  position: relative;
+  height: 30px;
+  background-color: #E4E3E3;
+  padding: 0px 15px 0 10px;
+  cursor: -webkit-grab;
+}
+
+.window .window-bar:active,
+.window .window-bar:focus {
+  cursor: -webkit-grabbing;
+}
+
+.window .window-bar span {
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  display: inline-block;
+  border-radius: 10px;
+  margin: 9px 3px
+}
+
+.window .window-bar span.close {
+  background-color: #D73234;
+  cursor: pointer;
+}
+
+.window .window-bar span.reduce {
+  background-color: #E9B427
+}
+
+#script-area {
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+}
+
+/* Dock Styling */
+#dock-frame {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #E4E3E3;
+}
+
+#dock {
+    background: url("")
+}
