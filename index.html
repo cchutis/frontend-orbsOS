@@ -1,67 +1,122 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="src/style.css">
-    <script src="https://draggabilly.desandro.com/draggabilly.pkgd.js"></script>
-    <script src="src/index.js" defer></script>
-    <title>FS OS</title>
-  </head>
-  <body>
-    <!-- Dock -->
-    
-    <div class="container">
-      
-      <!-- Text Editor -->
-      <div id="text-editor-app" class="draggable window">
-        <div class="window-bar">
-          <span class="close"></span>
-          <h4 class="window-title">Text Editor</h4>
-        </div>
-        <div class="text-edit-options">
-          <p style="padding-left: 30px;">
-            <label class="switch">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="src/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+  <script src="https://draggabilly.desandro.com/draggabilly.pkgd.js"></script>
+  <script src="src/index.js" defer></script>
+  <title>FS OS</title>
+</head>
+
+<body>
+  <!-- Dock -->
+
+  <div class="container">
+
+    <!-- Text Editor -->
+    <div id="text-editor-app" class="draggable window">
+      <div class="window-bar">
+        <span class="close"></span>
+        <h4 class="window-title">Text Editor</h4>
+      </div>
+      <div class="text-edit-options">
+        <p style="padding-left: 30px;">
+          <label class="switch text" onclick="textCodeSwitch()">
             <input type="checkbox">
             <span class="slider round"></span>
           </label>
         </p>
-          <p style="padding-right: 30px;">
-            <button class="increase-font" onclick="resizeText(1)">A</button>
-            <button class="decrease-font" onclick="resizeText(-1)">a</button>
-            <select class="font-picker" name="Font">
-              <option value="Arial">Arial</option>
-              <option value="veranda">Veranda</option>
-              <option value="comic-sans">Comic Sans</option>
-              <option value="times">Times New Roman</option>
-            </select>
-          </p>
-        </div>
-        <div class="text-edit-content">
-            <textarea id="script-area"></textarea>
-            <!-- <iframe src="https://www.constantinechutis.com" style="width: 100%; height: 600px;"></iframe> -->
-        </div>
+        <p style="padding-right: 30px;">
+          <button class="increase-font font-choice" onclick="resizeText(1)">A</button>
+          <button class="decrease-font font-choice" onclick="resizeText(-1)">a</button>
+          <select id="input-font" class="font-picker font-choice" onchange="changeFont (this);">
+            <option value="Arial">Arial</option>
+            <option value="Impact">Impact</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Lucida Sans Unicode">Lucida Sans</option>
+            <option value="Comic Sans MS">Comic Sans</option>
+            <option value="Times New Roman">Times New Roman</option>
+          </select>
+        </p>
       </div>
-      
-      <!-- <div class="draggable window">
+      <div class="text-edit-content">
+        <textarea id="script-area"></textarea>
+        <!-- <iframe src="https://www.constantinechutis.com" style="width: 100%; height: 600px;"></iframe> -->
+      </div>
+    </div>
+    <!-- Calculator App -->
+    <div id="calculator-app" class="draggable window">
         <div class="window-bar">
           <span class="close"></span>
           <h4 class="window-title">Calculator</h4>
         </div>
+        <div class="calculator-content">
+          <!-- calc -->
+          <div class="calculator">
+          
+            <input type="text" class="calculator-screen" value="" disabled />
+          
+            <div class="calculator-keys">
+          
+              <button type="button" class="operator" value="+">+</button>
+              <button type="button" class="operator" value="-">-</button>
+              <button type="button" class="operator" value="*">&times;</button>
+              <button type="button" class="operator" value="/">&divide;</button>
+              <button type="button" class="operator" value="%">%</button>
+              <button type="button" class="operator" value="^">^</button>
+              <button type="button" class="operator" value="Pyt">Pyt</button>
+          
+              <button type="button" class="num-key" value="7">7</button>
+              <button type="button" class="num-key" value="8">8</button>
+              <button type="button" class="num-key" value="9">9</button>
+          
+          
+              <button type="button" class="num-key" value="4">4</button>
+              <button type="button" class="num-key" value="5">5</button>
+              <button type="button" class="num-key" value="6">6</button>
+          
+          
+              <button type="button" class="num-key" value="1">1</button>
+              <button type="button" class="num-key" value="2">2</button>
+              <button type="button" class="num-key" value="3">3</button>
+          
+          
+              <button type="button" class="num-key" value="0">0</button>
+              <button type="button" class="num-key decimal" value=".">.</button>
+              <button type="button" class="num-key all-clear" value="all-clear">AC</button>
+          
+              <button type="button" class="equal-sign operator" value="=">=</button>
+          
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="draggable window">
+      <!-- Task Tracker -->
+      <div id="task-tracker-app" class="draggable window">
         <div class="window-bar">
           <span class="close"></span>
           <h4 class="window-title">Task Tracker</h4>
         </div>
-      </div> -->
-      
-    </div>
-    <div id="dock-frame">
-      <div id="dock">
       </div>
+
+  </div>
+  <div id="dock-frame">
+    <div id="dock">
+      <div id="text-editor-icon" class="icon">Aa</div>
+      <div id="timer-icon" class="icon">:01</div>
+      <div id="calculator-icon" class="icon">+/-</div>
+      <div id="task-tracker-icon" class="icon">√</div>
+      <div id="calendar-icon" class="icon">31</div>
+      <div id="weather-icon" class="icon">84º</div>
     </div>
-    <!-- <div id="desktop-widget"></div> -->
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
-  </body>
+  </div>
+  <div id="desktop-widget"></div>
+  <!-- You can also require other files to run in this process -->
+  <script src="./renderer.js"></script>
+</body>
+
 </html>

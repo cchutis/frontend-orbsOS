@@ -58,20 +58,24 @@
 // }
 
 // Time Widget
-// const timeWidget = querySelector('#desktop-widget')
-// function startTime() {
-//     let today = new Date();
-//     let h = today.getHours();
-//     let m = today.getMinutes();
-//     m = fixMin(m)
-//     timeWidget.innerHTML = h + ":" + m
-// }
-//     function fixMin(m) {
-//         if(m < 10) {
-//             m = "0" + m
-//         }
-//         return m;
-//     }
+const timeWidget = document.querySelector('#desktop-widget')
+function updateTime() {
+    var currentTime = new Date()
+    var hours = currentTime.getHours()
+    var minutes = currentTime.getMinutes()
+    if (minutes < 10) {
+        minutes = "0" + minutes
+    }
+    var t_str = hours + ":" + minutes + " ";
+    if (hours > 11) {
+        t_str += "PM";
+    } else {
+        t_str += "AM";
+    }
+    timeWidget.innerHTML = t_str;
+}
+setInterval(updateTime, 1000);
+document.addEventListener("DOMContentLoaded", updateTime())
 
 // get all draggie elements
 let draggableElems = document.querySelectorAll('.draggable');
@@ -101,3 +105,143 @@ function resizeText(multiplier) {
     }
     textArea.style.fontSize = parseFloat(textArea.style.fontSize) + (multiplier * 0.2) + "em";
 }
+
+let changeFont = function(font) {
+  textArea.style.fontFamily = font.value;
+};
+
+// Icon hover & interaction
+const dock = document.querySelector('#dock')
+
+dock.addEventListener('click', function(e) {
+    if(e.target.id === 'text-editor-icon') {
+        document.querySelector('#text-editor-app').style.display = 'block';
+    }
+    if(e.target.id === 'calculator-icon') {
+        document.querySelector('#calculator-app').style.display = 'block';
+    }
+    if(e.target.id === 'task-tracker-icon') {
+        document.querySelector('#task-tracker-app').style.display = 'block';
+    }
+})
+
+// Text/Code Switcher
+
+
+
+// Calculator
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const calculator = {
+        displayValue: '0',
+        firstOperand: null,
+        waitingForSecondOperand: false,
+        operator: null,
+    };
+
+    function updateDisplay() {
+        const display = document.getElementsByClassName('calculator-screen')[0];
+        display.value = calculator.displayValue;
+    }
+    updateDisplay();
+
+    const keys = document.querySelector('.calculator-keys')
+    keys.addEventListener('click', function (e) {
+        if (!e.target.matches('button')) {
+            return
+        }
+
+        if (e.target.classList.contains('operator')) {
+            handleOperator(e.target.value)
+            updateDisplay()
+            return
+        }
+
+        if (e.target.classList.contains('decimal')) {
+            inputDecimal(e.target.value)
+            updateDisplay()
+            return //prevent MORE decimals from coming up
+        }
+
+        if (e.target.classList.contains('all-clear')) {
+            resetCalculator()
+            updateDisplay()
+            return
+        }
+
+        inputDigit(e.target.value)
+        updateDisplay()
+    })
+
+    function inputDigit(digit) {
+        if (calculator.waitingForSecondOperand === true) {
+            calculator.displayValue = digit
+            calculator.waitingForSecondOperand = false
+        } else {
+            if (calculator.displayValue === 0) {
+                calculator.displayValue = digit
+            } else {
+                calculator.displayValue += digit
+            }
+        }
+    }
+
+    function inputDecimal(dot) {
+        if (calculator.waitingForSecondOperand === true) {
+            return
+        }
+        if (!calculator.displayValue.includes(dot)) {
+            calculator.displayValue += dot;
+        }
+    }
+
+    function handleOperator(nextOperator) {
+        const inputValue = parseFloat(calculator.displayValue)
+
+        if (calculator.operator && calculator.waitingForSecondOperand) {
+            calculator.operator = nextOperator
+            return
+        }
+
+        if (calculator.firstOperand === null) {
+            calculator.firstOperand = inputValue
+        } else if (calculator.operator) {
+            const currentValue = calculator.firstOperand || 0
+            const result = performCalculation[calculator.operator](calculator.firstOperand, inputValue)
+
+            calculator.displayValue = String(result)
+            calculator.firstOperand = result
+        }
+
+        calculator.waitingForSecondOperand = true;
+        calculator.operator = nextOperator
+    }
+
+    const performCalculation = {
+        '/': (firstOperand, secondOperand) => firstOperand / secondOperand,
+
+        '*': (firstOperand, secondOperand) => firstOperand * secondOperand,
+
+        '+': (firstOperand, secondOperand) => firstOperand + secondOperand,
+
+        '-': (firstOperand, secondOperand) => firstOperand - secondOperand,
+
+        '%': (firstOperand, secondOperand) => firstOperand % secondOperand,
+
+        '^': (firstOperand, secondOperand) => Math.pow(firstOperand, secondOperand),
+
+        'Pyt': (firstOperand, secondOperand) => Math.pow((Math.pow(firstOperand, 2) + Math.pow(secondOperand, 2)), 0.5),
+
+        '=': (firstOperand, secondOperand) => secondOperand
+
+    }
+
+    function resetCalculator() {
+        calculator.displayValue = '0';
+        calculator.firstOperand = null;
+        calculator.waitingForSecondOperand = false;
+        calculator.operator = null;
+    }
+
+})

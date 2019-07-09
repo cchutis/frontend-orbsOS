@@ -73,19 +73,6 @@ textarea {
   font-size: 1em;
 }
 
-/* Dock Styling */
-#dock-frame {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    background-color: #E4E3E3;
-}
-
-#dock {
-    
-}
 
 .draggable {
    position: fixed;
@@ -122,7 +109,7 @@ textarea {
 
 h4 {
   display: inline;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Varela Round', sans-serif;
   font-weight: 100;
   color: #2B303C;
   font-size: 14px;
@@ -132,9 +119,13 @@ h4 {
 }
 
 #desktop-widget {
-  position: fixed;
-  right: 0;
-  top: 10px;
+  position: absolute;
+  right: 1%;
+  top: 2%;
+  color: #fff;
+  font-size: 7em;
+  font-family: 'Varela Round', sans-serif;
+  z-index: -1;
 }
 
 /* switch */
@@ -166,7 +157,7 @@ h4 {
   content: "Aa";
   color: #2196F3;
   font-size: 16px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Varela Round', sans-serif;
   height: 26px;
   width: 26px;
   left: 4px;
@@ -212,7 +203,7 @@ input:checked + .slider:before {
  top: 22%;
  left: 45%;
  font-size: 16px;
- font-family: Verdana, sans-serif;
+ font-family: 'Varela Round', sans-serif;
 }
 
 input:checked + .slider:after
@@ -228,7 +219,7 @@ input:checked + .slider:after
 .decrease-font {
   width: 40px;
   height: 30px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Varela Round', sans-serif;
   font-size: 20px;
   color: #2196F3;
   border-radius: 16px;
@@ -240,11 +231,164 @@ input:checked + .slider:after
 .font-picker {
   width: 120px;
   height: 30px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Varela Round', sans-serif;
   font-size: 16px;
   color: #2196F3;
   border-radius: 26px;
   font-weight: 100;
   border: 0;
+  cursor: pointer;
+}
+
+/* Dock Styling */
+#dock-frame {
+  position: fixed;
+  bottom: 0;
+  left: 15vw;
+  width: 70%;
+  height: 90px;
+  background-color: #E4E3E3;
+  border: 0;
+  border-radius: 16px 16px 0 0;
+  opacity: 0.9;
+}
+
+#dock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: bottom;
+  margin-top: 5px;
+}
+
+.icon {
+  background-color: #2B303C;
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #FFF;
+  font-size: 40px;
+  font-family: 'Varela Round', sans-serif;
+  cursor: pointer;
+}
+
+.icon:hover {
+  background-color: #2196F3;
+}
+/* default app state */
+#text-editor-app {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 35%;
+}
+
+#calculator-app {
+  display: none;
+    position: fixed;
+    top: 20%;
+    right: 2%;
+    height: 650px;
+}
+
+#task-tracker-app {
+  display: none;
+    position: fixed;
+    top: 20%;
+    left: 2%;
+}
+
+
+/* Calculator Style */
+.calculator {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+}
+
+.calculator-screen {
+  width: 100%;
+  font-size: 5rem;
+  height: 80px;
+  border: 0;
+  background-color: #252525;
+  color: greenyellow;
+  text-align: right;
+  font-family: 'Varela Round', sans-serif;
+}
+
+
+.operator {
+  background-color: #337cac;
+  color: #fff;
+  font-size: 16px;
+  height: 40px;
+  font-size: 20px;
+}
+
+.num-key {
+  background-color: #2B303C;
+  color: #FFF;
+  font-size: 30px;
+  font-family: 'Varela Round', sans-serif;
+  border: 0;
+  border-radius: 50px;
+  height: 80px;
+  width: 80px;
+}
+
+.decimal {
+  background-color: #337cac;
+}
+
+.equal-sign {
+  background-color: #337cac;
+  border: 0;
+  color: #fff;
+  height: 100%;
+  grid-area: 2 / 4 / 7 / 5;
+}
+
+.equal-sign:hover {
+  background-color: #4e9ed4;
+}
+
+.calculator-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.operator {
+  border: 0;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.all-clear {
+  background-color: #D73234;
+}
+
+.all-clear:hover {
+  background-color: #E9B427;
+}
+
+.operator:hover {
+  background-color: #2B303C;
+}
+
+.num-key:hover {
+  background-color: #2196F3;
+}
+
+.all-clear,
+.num-key,
+.operator,
+.equal-sign {
   cursor: pointer;
 }
