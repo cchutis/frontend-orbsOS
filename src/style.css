@@ -1,0 +1,250 @@
+/* Universal Styles */
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #2B303C;
+}
+
+textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
+}
+
+/* Window Styling */
+.window {
+  position: fixed;
+  width: 540px;
+  height: 540px;
+  background-color: #FFF;
+  border-radius: 10px;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.window.-show { opacity: 1 }
+
+.window.-animating {
+  -webkit-transition: transform 200ms ease-out;
+  -moz-transition: transform 200ms ease-out;
+  -o-transition: transform 200ms ease-out;
+  transition: transform 200ms ease-out;
+}
+
+.window .window-bar {
+  position: relative;
+  height: 30px;
+  background-color: #E4E3E3;
+  padding: 0px 15px 0 10px;
+  cursor: -webkit-grab;
+}
+
+.window .window-bar:active,
+.window .window-bar:focus {
+  cursor: -webkit-grabbing;
+}
+
+.window .window-bar span {
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  display: inline-block;
+  border-radius: 10px;
+  margin: 9px 3px
+}
+
+.window .window-bar span.close {
+  background-color: #D73234;
+  cursor: pointer;
+}
+
+.window .window-bar span.reduce {
+  background-color: #E9B427
+}
+
+#script-area {
+  width: 100%;
+  height: 100%;
+  font-size: 1em;
+}
+
+/* Dock Styling */
+#dock-frame {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #E4E3E3;
+}
+
+#dock {
+    
+}
+
+.draggable {
+   position: fixed;
+  width: 540px;
+  height: 540px;
+  background-color: #FFF;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.draggable.is-pointer-down {
+  z-index: 2; /* above other draggies */
+}
+.draggable.is-dragging { opacity: 0.7; }
+
+.container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.text-edit-content {
+  margin: 20px;
+  height: 100%;
+}
+
+.text-edit-options {
+  background-color: #E4E3E3;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h4 {
+  display: inline;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  color: #2B303C;
+  font-size: 14px;
+  position: relative;
+  left: 200px;
+  top: -12px;
+}
+
+#desktop-widget {
+  position: fixed;
+  right: 0;
+  top: 10px;
+}
+
+/* switch */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2196F3;
+  -webkit-transition: .4s;
+  transition: .4s;
+   border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "Aa";
+  color: #2196F3;
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input:checked + .slider:before {
+  color: #2B303C;
+  content: "</>";
+  font-size: 12px;
+  font-weight: 500;
+}
+
+input:checked + .slider {
+  background-color: #2B303C;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(55px);
+}
+
+/*------ ADDED CSS ---------*/
+.slider:after
+{
+ content:'Text';
+ color: white;
+ display: block;
+ position: absolute;
+ /* transform: translate(-50%,-50%); */
+ top: 22%;
+ left: 45%;
+ font-size: 16px;
+ font-family: Verdana, sans-serif;
+}
+
+input:checked + .slider:after
+{  
+  content:'Code';
+  left: 10%;
+}
+
+/*--------- END --------*/
+
+
+.increase-font, 
+.decrease-font {
+  width: 40px;
+  height: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  color: #2196F3;
+  border-radius: 16px;
+  font-weight: 100;
+  border: 0;
+  cursor: pointer;
+}
+
+.font-picker {
+  width: 120px;
+  height: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  color: #2196F3;
+  border-radius: 26px;
+  font-weight: 100;
+  border: 0;
+  cursor: pointer;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="src/style.css">
+    <script src="https://draggabilly.desandro.com/draggabilly.pkgd.js"></script>
+    <script src="src/index.js" defer></script>
+    <title>FS OS</title>
+  </head>
+  <body>
+    <!-- Dock -->
+    
+    <div class="container">
+      
+      <!-- Text Editor -->
+      <div id="text-editor-app" class="draggable window">
+        <div class="window-bar">
+          <span class="close"></span>
+          <h4 class="window-title">Text Editor</h4>
+        </div>
+        <div class="text-edit-options">
+          <p style="padding-left: 30px;">
+            <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </p>
+          <p style="padding-right: 30px;">
+            <button class="increase-font" onclick="resizeText(1)">A</button>
+            <button class="decrease-font" onclick="resizeText(-1)">a</button>
+            <select class="font-picker" name="Font">
+              <option value="Arial">Arial</option>
+              <option value="veranda">Veranda</option>
+              <option value="comic-sans">Comic Sans</option>
+              <option value="times">Times New Roman</option>
+            </select>
+          </p>
+        </div>
+        <div class="text-edit-content">
+            <textarea id="script-area"></textarea>
+            <!-- <iframe src="https://www.constantinechutis.com" style="width: 100%; height: 600px;"></iframe> -->
+        </div>
+      </div>
+      
+      <!-- <div class="draggable window">
+        <div class="window-bar">
+          <span class="close"></span>
+          <h4 class="window-title">Calculator</h4>
+        </div>
+      </div>
+      <div class="draggable window">
+        <div class="window-bar">
+          <span class="close"></span>
+          <h4 class="window-title">Task Tracker</h4>
+        </div>
+      </div> -->
+      
+    </div>
+    <div id="dock-frame">
+      <div id="dock">
+      </div>
+    </div>
+    <!-- <div id="desktop-widget"></div> -->
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>
