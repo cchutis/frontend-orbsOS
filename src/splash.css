@@ -1,0 +1,141 @@
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #2B303C;
+    color: lightgray;
+    font-family: 'Varela Round', sans-serif;
+}
+
+#splash-container {
+      position: absolute;
+      width: 800px;
+      height: 600px;
+      top: 50%;
+      left: 50%;
+      margin: -300px 0 0 -400px;
+}
+
+#create-splash-container {
+    position: absolute;
+    width: 800px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    margin: -350px 0 0 -400px;
+}
+
+#create-acct-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#create-acct-container > h1 {
+    font-size: 3em;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#div-animation-canvas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image-test {
+    width: 400px !important;
+}
+
+h1 {
+    font-size: 5em;
+}
+
+#user-accounts {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-icon {
+    width: 100px;
+    height: 100px;
+    border: 0;
+    border-radius: 50px;
+    background-color: lightgray;
+    margin: 0 40px;
+    cursor: pointer;
+}
+
+.create-user-icon {
+    font-size: 3em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-icon:hover {
+    background-color: #2196F3;
+    transform: scale(1.1);
+}
+
+.photo-upload {
+      width: 200px;
+      height: 200px;
+      border: 0;
+      border-radius: 100px;
+      background-color: lightgray;
+      margin: 0 40px;
+      cursor: pointer;
+}
+
+#create-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-input {
+    padding: 20px;
+    border: 0;
+    border-radius: 30px;
+    width: 400px;
+    margin-top: 40px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 30px;
+}
+
+.create-input-button {
+    padding: 20px;
+    border: 0;
+    border-radius: 30px;
+    width: 150px;
+    margin-top: 40px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#location {
+    width: 300px;
+}
+
+#back-button {
+    position: fixed;
+    top: 5%;
+    left: 2%;
+    color: #fff;
+    font-size: 4em;
+    cursor: pointer;
+}
+#back-button:hover {
+    color: #2196F3;
+    transform: scale(1.1)
+}

@@ -1,8 +1,9 @@
 {
   "name": "electron-quick-start",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Orbs OS is a digital dashboard OS made in Electron",
   "main": "main.js",
+  "productName": "Orbs OS",
   "scripts": {
     "start": "electron ."
   },
@@ -14,13 +15,14 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
+  "author": "Constantine Chutis & Kevin Dai",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^5.0.6"
   },
   "dependencies": {
     "draggabilly": "^2.2.0",
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "webcamjs": "^1.0.25"
   }
 }

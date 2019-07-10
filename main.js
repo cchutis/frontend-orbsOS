@@ -16,9 +16,30 @@ function createWindow () {
       preload: path.join(__dirname, 'preload.js')
     }
   })
-
+  //
+  // var menu = Menu.buildFromTemplate([{
+  //   label: 'Menu',
+  //   submenu: [{
+  //       label: 'Adjust Notification Value'
+  //     },
+  //     {
+  //       label: 'CoinMarketCap'
+  //     },
+  //     {
+  //       label: 'Exit',
+  //       click() {
+  //         app.quit()
+  //       }
+  //     }
+  //   ]
+  // }])
+  // Menu.setApplicationMenu(menu);
+  //
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  // Straight to App
+  // mainWindow.loadFile('index.html')
+  mainWindow.loadFile('splash.html')
+  // When loaded, ->>> document.location.href = 'index.html';
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
