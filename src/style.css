@@ -1,18 +1,18 @@
 /* Universal Styles */
 body {
-    width: 100%;
-    height: 100%;
-    background-color: #2B303C;
+  width: 100%;
+  height: 100%;
+  background-color: #2B303C;
 }
 
 textarea {
-    border: none;
-    overflow: auto;
-    outline: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    resize: none;
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  resize: none;
 }
 
 /* Window Styling */
@@ -24,15 +24,13 @@ textarea {
   border-radius: 10px;
   overflow: hidden;
   opacity: 1;
+  box-shadow:inset 0 1px 0 rgba(255, 255, 255, .6),
+  0 22px 70px 4px rgba(0, 0, 0, 0.56),
+  0 0 0 1px rgba(0, 0, 0, 0.3);
 }
 
-.window.-show { opacity: 1 }
-
-.window.-animating {
-  -webkit-transition: transform 200ms ease-out;
-  -moz-transition: transform 200ms ease-out;
-  -o-transition: transform 200ms ease-out;
-  transition: transform 200ms ease-out;
+.window.-show {
+  opacity: 1
 }
 
 .window .window-bar {
@@ -75,7 +73,7 @@ textarea {
 
 
 .draggable {
-   position: fixed;
+  position: fixed;
   width: 540px;
   height: 540px;
   background-color: #FFF;
@@ -84,9 +82,13 @@ textarea {
 }
 
 .draggable.is-pointer-down {
-  z-index: 2; /* above other draggies */
+  z-index: 2;
+  /* above other draggies */
 }
-.draggable.is-dragging { opacity: 0.7; }
+
+.draggable.is-dragging {
+  opacity: 0.7;
+}
 
 .container {
   height: 100vh;
@@ -137,7 +139,9 @@ h4 {
   height: 34px;
 }
 
-.switch input {display:none;}
+.switch input {
+  display: none;
+}
 
 .slider {
   position: absolute;
@@ -149,7 +153,7 @@ h4 {
   background-color: #2196F3;
   -webkit-transition: .4s;
   transition: .4s;
-   border-radius: 34px;
+  border-radius: 34px;
 }
 
 .slider:before {
@@ -166,56 +170,54 @@ h4 {
   -webkit-transition: .4s;
   transition: .4s;
   border-radius: 50%;
-   display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   color: #2B303C;
   content: "</>";
   font-size: 12px;
   font-weight: 500;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #2B303C;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(55px);
 }
 
 /*------ ADDED CSS ---------*/
-.slider:after
-{
- content:'Text';
- color: white;
- display: block;
- position: absolute;
- /* transform: translate(-50%,-50%); */
- top: 22%;
- left: 45%;
- font-size: 16px;
- font-family: 'Varela Round', sans-serif;
+.slider:after {
+  content: 'Text';
+  color: white;
+  display: block;
+  position: absolute;
+  /* transform: translate(-50%,-50%); */
+  top: 22%;
+  left: 45%;
+  font-size: 16px;
+  font-family: 'Varela Round', sans-serif;
 }
 
-input:checked + .slider:after
-{  
-  content:'Code';
+input:checked+.slider:after {
+  content: 'Code';
   left: 10%;
 }
 
 /*--------- END --------*/
 
 
-.increase-font, 
+.increase-font,
 .decrease-font {
   width: 40px;
   height: 30px;
@@ -279,6 +281,7 @@ input:checked + .slider:after
 .icon:hover {
   background-color: #2196F3;
 }
+
 /* default app state */
 #text-editor-app {
   display: none;
@@ -289,17 +292,17 @@ input:checked + .slider:after
 
 #calculator-app {
   display: none;
-    position: fixed;
-    top: 20%;
-    right: 2%;
-    height: 650px;
+  position: fixed;
+  top: 20%;
+  right: 2%;
+  height: 650px;
 }
 
 #task-tracker-app {
   display: none;
-    position: fixed;
-    top: 20%;
-    left: 2%;
+  position: fixed;
+  top: 20%;
+  left: 2%;
 }
 
 
@@ -391,4 +394,52 @@ input:checked + .slider:after
 .operator,
 .equal-sign {
   cursor: pointer;
+}
+
+/* Piano app */
+#piano-app {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 2%;
+  width: 700px;
+  height: 300px;
+}
+
+.white {
+  fill: white;
+  stroke: black;
+  stroke-width: 1;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.white:hover {
+  fill: #9e9e9e;
+  stroke: lightblue;
+  cursor: pointer;
+  stroke-width: 1;
+  outline: black solid 1px;
+}
+
+.black {
+  fill: black;
+  stroke-width: 1;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.black:hover {
+  fill: #515151;
+  stroke: lightblue;
+  stroke-width: 1;
+  outline: black solid 1px;
+}
+
+.piano {
+  margin-left: -170px;
+}
+
+i {
+  pointer-events: none;
 }
