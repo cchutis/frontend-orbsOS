@@ -10,8 +10,8 @@ function getUser() {
     fetch(userDataUrl)
     .then(r => r.json())
     .then(user => {
-        currentUser = user
-        console.log(currentUser)
+      currentUser = user
+      createWeather(currentUser)
     })
 }
 
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", updateTime())
 document.addEventListener('click', function(e) {
     if(e.target.className === 'close') {
         e.target.parentNode.parentNode.style.display = 'none';
-    } 
+    }
     // if(e.target.className === 'icon') {
     //     e.target.style.backgroundColor = '#000';
     // }
@@ -655,4 +655,25 @@ function run() {
     newScript.id = 'scriptContainer';
     newScript.text = el.value;
     document.body.appendChild(newScript);
+}
+
+//Create Weather
+function createWeather(currentUser) {
+  fetch('http://dataservice.accuweather.com/locations/v1/topcities/150?apikey=tQcG9le6zTobqSHGd6g2wWrTOKhB4yvP&language=en-us&details=false')
+    .then(res => res.json())
+    .then(countries => {
+      for (const country of countries) {
+        if (country.Country.EnglishName === currentUser.location) {
+          const countryCode = country.Key
+          fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${countryCode}?apikey=tQcG9le6zTobqSHGd6g2wWrTOKhB4yvP&language=en-us&details=false&metric=true`)
+            .then(res => res.json())
+            .then(place => {
+              const temperature = place.DailyForecasts[0].Temperature.Maximum.Value
+              console.log(temperature)
+              const details = place.Headline.Text
+              console.log(details)
+            })
+        }
+      }
+    })
 }
