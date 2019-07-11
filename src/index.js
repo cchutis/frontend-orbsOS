@@ -1,16 +1,18 @@
-const userDataUrl = 'http://localhost:3000/users/'
-// NOT FINISHED ^^^^^^ 
+
+let userId = localStorage.getItem("user")
+const userDataUrl = `http://localhost:3000/users/${userId}`
+// NOT FINISHED ^^^^^^
 
 //document loaded?
 document.addEventListener('DOMContentLoaded', getUser());
-//get user instance
+// get user instance
 function getUser() {
-    fetch('userDataUrl')
+    fetch(userDataUrl)
     .then(r => r.json())
     .then(user => console.log(user))
 }
 
-
+// console.log(localStorage.getItem("user"))
 // Time Widget
 const timeWidget = document.querySelector('#desktop-widget')
 function updateTime() {
@@ -522,6 +524,7 @@ function getEverything() {
 
                 const deleteButton = document.createElement('button')
                 deleteButton.innerText = 'Delete'
+                deleteButton.className = 'task-delete'
                 addEventListenerToDelete(deleteButton)
                 coolTask.appendChild(deleteButton)
 
@@ -565,6 +568,7 @@ function appendDetails(task) {
     const saveButton = document.createElement('button')
     saveButton.innerText = 'Save'
     saveButton.dataset.id = task.id
+    saveButton.className = 'task-edit-save'
     addEventListenerToUpdate(saveButton)
 
     const fullDetails = document.querySelector('#TaskDetails')
@@ -594,6 +598,7 @@ function createNewTask(newTaskButton) {
         const newTaskActivity = document.createElement('textarea')
         const newTaskDescription = document.createElement('textarea')
         const submitButton = document.createElement('button')
+        submitButton.className = 'task-submit'
         submitButton.innerText = 'Submit'
         addEventListenerToPost(submitButton)
 
