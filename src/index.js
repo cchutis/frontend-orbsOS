@@ -1,3 +1,16 @@
+const userDataUrl = 'http://localhost:3000/users/'
+// NOT FINISHED ^^^^^^ 
+
+//document loaded?
+document.addEventListener('DOMContentLoaded', getUser());
+//get user instance
+function getUser() {
+    fetch('userDataUrl')
+    .then(r => r.json())
+    .then(user => console.log(user))
+}
+
+
 // Time Widget
 const timeWidget = document.querySelector('#desktop-widget')
 function updateTime() {
@@ -61,9 +74,13 @@ const textArea = document.querySelector('#text-area')
 // Text Area Code/Text Switch
 function textCodeSwitch() {
     const textArea = document.querySelector('#text-area')
+    const textOptions = document.querySelector('.text-options')
     const codeArea = document.querySelector('#code-area')
+    const codeOptions = document.querySelector('.code-options')
     textArea.style.display = 'none';
     codeArea.style.display = 'block';
+    textOptions.style.display = 'none';
+    codeOptions.style.display = 'block';
 }
 
 // const increaseSizeButton = document.querySelector('.increase-font')
@@ -104,7 +121,6 @@ dock.addEventListener('click', function(e) {
 })
 
 // Text/Code Switcher
-
 
 
 // Calculator
@@ -488,3 +504,147 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
 })
+
+// Task Tracker App
+getEverything()
+function getEverything() {
+    fetch('http://localhost:3000/tasks')
+        .then(res => res.json())
+        .then(tasks => {
+            const list = document.querySelector('#ToDoList')
+            addEventListenerToShow(list)
+
+            for (const task of tasks) {
+                const coolTask = document.createElement('li')
+                coolTask.className = 'show-task'
+                coolTask.dataset.id = task.id
+                coolTask.innerText = task.activity
+
+                const deleteButton = document.createElement('button')
+                deleteButton.innerText = 'Delete'
+                addEventListenerToDelete(deleteButton)
+                coolTask.appendChild(deleteButton)
+
+                list.appendChild(coolTask)
+            }
+
+            const newTaskDiv = document.querySelector('#New-Task')
+            const newTaskButton = document.createElement('button')
+            newTaskButton.innerText = 'New Task'
+            createNewTask(newTaskButton)
+            newTaskDiv.appendChild(newTaskButton)
+        })
+}
+
+function addEventListenerToShow(list) {
+    list.addEventListener('click', function (e) {
+        if (e.target.className === 'show-task') {
+            fetch('http://localhost:3000/tasks' + '/' + e.target.dataset.id)
+                .then(res => res.json())
+                .then(task => appendDetails(task))
+        }
+    })
+}
+
+function addEventListenerToDelete(deleteButton) {
+    deleteButton.addEventListener('click', function (e) {
+        fetch('http://localhost:3000/tasks' + '/' + e.target.parentElement.dataset.id, {
+                method: 'DELETE'
+            })
+            .then(e.target.parentElement.remove())
+    })
+}
+
+function appendDetails(task) {
+    const thisActivity = document.createElement('h1')
+    thisActivity.innerText = task.activity
+
+    const thisDescription = document.createElement('textarea')
+    thisDescription.innerText = task.description
+
+    const saveButton = document.createElement('button')
+    saveButton.innerText = 'Save'
+    saveButton.dataset.id = task.id
+    addEventListenerToUpdate(saveButton)
+
+    const fullDetails = document.querySelector('#TaskDetails')
+    fullDetails.innerHTML = ''
+    fullDetails.appendChild(thisActivity)
+    fullDetails.appendChild(thisDescription)
+    fullDetails.appendChild(saveButton)
+}
+
+function addEventListenerToUpdate(saveButton) {
+    saveButton.addEventListener('click', function (e) {
+        fetch('http://localhost:3000/tasks' + '/' + e.target.dataset.id, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            body: JSON.stringify({
+                description: e.target.previousSibling.value
+            })
+        })
+    })
+}
+
+function createNewTask(newTaskButton) {
+    newTaskButton.addEventListener('click', function (e) {
+        const newTaskActivity = document.createElement('textarea')
+        const newTaskDescription = document.createElement('textarea')
+        const submitButton = document.createElement('button')
+        submitButton.innerText = 'Submit'
+        addEventListenerToPost(submitButton)
+
+        document.querySelector('#New-Task').appendChild(newTaskActivity)
+        document.querySelector('#New-Task').appendChild(newTaskDescription)
+        document.querySelector('#New-Task').appendChild(submitButton)
+    })
+}
+
+function addEventListenerToPost(submitButton) {
+    submitButton.addEventListener('click', function (e) {
+        fetch('http://localhost:3000/tasks', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                },
+                body: JSON.stringify({
+                    activity: e.target.previousSibling.previousSibling.value,
+                    description: e.target.previousSibling.value
+                })
+            })
+            .then(res => res.json())
+            .then(newTask => {
+                const newTaskLi = document.createElement('li')
+                newTaskLi.innerText = newTask.activity
+                newTaskLi.dataset.id = newTask.id
+
+                const deleteButton = document.createElement('button')
+                deleteButton.innerText = 'Delete'
+                addEventListenerToDelete(deleteButton)
+                newTaskLi.appendChild(deleteButton)
+
+                document.querySelector('#ToDoList').appendChild(newTaskLi)
+            })
+    })
+}
+
+// Code Editor Logic
+function run() {
+    let el = document.getElementById('code-area');
+    let scriptText = el.value;
+    let oldScript = document.getElementById('scriptContainer');
+    let newScript;
+
+    if (oldScript) {
+        oldScript.parentNode.removeChild(oldScript);
+    }
+
+    newScript = document.createElement('script');
+    newScript.id = 'scriptContainer';
+    newScript.text = el.value;
+    document.body.appendChild(newScript);
+}
