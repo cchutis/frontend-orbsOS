@@ -25,10 +25,12 @@ function renderUser(user) {
     const div = document.createElement('div')
     div.className = 'user-icon'
     div.id = `user-${user.id}`
+    div.dataset.id = user.id
     div.dataset.name = user.name
     div.onclick = loadOs
     div.style.backgroundImage = `url('img/${user.photo}')`
     div.style.backgroundSize = '100%'
+    
     
     userAccountsArea.insertBefore(div, userAccountsArea.childNodes[0])
 
