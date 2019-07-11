@@ -10,11 +10,17 @@ function getUser() {
     fetch(userDataUrl)
     .then(r => r.json())
     .then(user => {
-      currentUser = user
-      createWeather(currentUser)
+        currentUser = user
+        createWeather(currentUser)
     })
 }
-
+//Settings for User (populate and edit)
+const userSettings = document.querySelector('.settings-options');
+    userSettings.innerHTML = `
+    <img src="${currentUser.photo}">
+    <p>Name:<h3>${currentUser.name}</h3></p>
+    <p>Location:<h3>${currentUser.location}</h3></p>
+    `
 // console.log(localStorage.getItem("user"))
 // Time Widget
 const timeWidget = document.querySelector('#desktop-widget')
@@ -122,6 +128,9 @@ dock.addEventListener('click', function(e) {
     }
     if(e.target.id === 'timer-icon') {
         document.querySelector('#timer-app').style.display = 'block';
+    }
+    if(e.target.id === 'settings-icon') {
+        document.querySelector('#settings-app').style.display = 'block';
     }
 })
 

@@ -314,6 +314,15 @@ input:checked+.slider:after {
   top: 20%;
   left: 35%;
 }
+#settings-app {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 65%;
+  background-color: #E4E3E3;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 20px;
+}
 
 #calculator-app {
   display: none;
