@@ -2,14 +2,17 @@
 let userId = localStorage.getItem("user")
 const userDataUrl = `http://localhost:3000/users/${userId}`
 // NOT FINISHED ^^^^^^
-
+let currentUser;
 //document loaded?
 document.addEventListener('DOMContentLoaded', getUser());
 // get user instance
 function getUser() {
     fetch(userDataUrl)
     .then(r => r.json())
-    .then(user => console.log(user))
+    .then(user => {
+        currentUser = user
+        console.log(currentUser)
+    })
 }
 
 // console.log(localStorage.getItem("user"))
@@ -22,10 +25,10 @@ function updateTime() {
     if (minutes < 10) {
         minutes = "0" + minutes
     }
-    // if (hours > 12) {
-    //     hours -= 12
-    // }
-    let t_str = hours + ":" + minutes + " ";
+    if (hours > 12) {
+        fixedHours = hours - 12
+    }
+    let t_str = fixedHours + ":" + minutes + " ";
     if (hours > 11) {
         t_str += "PM";
     } else {

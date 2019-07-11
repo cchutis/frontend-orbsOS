@@ -18,7 +18,46 @@
   <div class="container">
 
     <!-- Text Editor -->
-    <div id="text-editor-app" data-app="text-editor" class="draggable window">
+    <div id="text-editor-app" class="draggable window">
+      <div class="window-bar">
+        <span class="close"></span>
+        <h4 class="window-title">Text Editor</h4>
+      </div>
+      <div class="text-edit-options">
+        <p style="padding-left: 30px;">
+          <label class="switch text" onclick="textCodeSwitch()">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </p>
+        <div class="text-options">
+          <p style="padding-right: 30px;">
+            <button class="increase-font font-choice" onclick="resizeText(1)">A</button>
+            <button class="decrease-font font-choice" onclick="resizeText(-1)">a</button>
+            <select id="input-font" class="font-picker font-choice" onchange="changeFont (this);">
+              <option value="Arial">Arial</option>
+              <option value="Impact">Impact</option>
+              <option value="Tahoma">Tahoma</option>
+              <option value="Courier New">Courier New</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Lucida Sans Unicode">Lucida Sans</option>
+              <option value="Comic Sans MS">Comic Sans</option>
+              <option value="Times New Roman">Times New Roman</option>
+            </select>
+          </p>
+        </div>
+        <div class="code-options">
+          <button class="run-btn" onclick="run()">Run <i class="fas fa-code"></i></button>
+        </div>
+      </div>
+      <div class="text-edit-content">
+        <textarea id="text-area"></textarea>
+        <textarea id="code-area"></textarea>
+        <!-- <iframe src="https://www.constantinechutis.com" style="width: 100%; height: 600px;"></iframe> -->
+      </div>
+    </div>
+    <!-- Settings App -->
+    <div id="text-editor-app" class="draggable window">
       <div class="window-bar">
         <span class="close"></span>
         <h4 class="window-title">Text Editor</h4>
