@@ -10,8 +10,8 @@ function getUser() {
     fetch(userDataUrl)
     .then(r => r.json())
     .then(user => {
-        currentUser = user
-        createWeather(currentUser)
+      currentUser = user
+      createWeather(currentUser)
     })
 }
 //Settings for User (populate and edit)
