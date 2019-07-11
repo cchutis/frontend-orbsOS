@@ -1,3 +1,8 @@
+button:focus,
+input:focus {
+    outline: none;
+}
+
 body {
     width: 100%;
     height: 100%;
@@ -7,21 +12,21 @@ body {
 }
 
 #splash-container {
-      position: absolute;
-      width: 800px;
-      height: 600px;
-      top: 50%;
-      left: 50%;
-      margin: -300px 0 0 -400px;
-}
-
-#create-splash-container {
     position: absolute;
     width: 800px;
     height: 600px;
     top: 50%;
     left: 50%;
-    margin: -350px 0 0 -400px;
+    margin: -300px 0 0 -400px;
+}
+
+#create-splash-container {
+    /* position: absolute;
+    width: 800px;
+    height: 600px;
+    top: 40%;
+    left: 50%;
+    margin: -350px 0 0 -400px; */
 }
 
 #create-acct-container {
@@ -31,7 +36,7 @@ body {
     align-items: center;
 }
 
-#create-acct-container > h1 {
+#create-acct-container>h1 {
     font-size: 3em;
 }
 
@@ -86,16 +91,29 @@ h1 {
 }
 
 .photo-upload {
-      width: 200px;
-      height: 200px;
-      border: 0;
-      border-radius: 100px;
-      background-color: lightgray;
-      margin: 0 40px;
-      cursor: pointer;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    cursor: pointer;
+    font-size: 100px;
+    width: 300px;
+    height: 300px;
+    border: 0;
+    border-radius: 20px 300px 300px 300px;
+    background-color: lightgray;
+    color: #2196F3;
+    /* margin: 0 40px; */
+    /* background-image: url('../img/snap.svg'); */
+    transform: rotateY(180deg);
 }
 
-#create-user {
+.photo-upload:hover {
+    background-color: #2196F3;
+    color: #fff;
+}
+
+#create-user-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -123,6 +141,11 @@ h1 {
     cursor: pointer;
 }
 
+.create-input-button:hover {
+    background-color: #2196F3;
+    color: #fff;
+}
+
 #location {
     width: 300px;
 }
@@ -135,7 +158,37 @@ h1 {
     font-size: 4em;
     cursor: pointer;
 }
+
 #back-button:hover {
     color: #2196F3;
     transform: scale(1.1)
+}
+
+.webcam-mask {
+    width: 300px;
+    height: 300px;
+    border-radius: 20px 300px 300px 300px;
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+}
+
+.snap-photo-btn {
+    display: none;
+    margin-top: -80px;
+    margin-left: -180px;
+    font-size: 30px;
+    border: 0;
+    border-radius: 50px 50px 50px 5px;
+    color: #2196F3;
+    background-color: #fff;
+    height: 75px;
+    width: 75px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.snap-photo-btn:hover {
+    background-color: #2196F3;
+    color: #fff;
+    transform: scale(1.1);
+    border: 0;
 }

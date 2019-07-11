@@ -9,3 +9,4 @@ windowTopBar.style.position = "absolute"
 windowTopBar.style.top = windowTopBar.style.left = 0
 windowTopBar.style.webkitAppRegion = "drag"
 document.body.appendChild(windowTopBar)
+

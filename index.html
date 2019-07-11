@@ -17,7 +17,7 @@
   <div class="container">
 
     <!-- Text Editor -->
-    <div id="text-editor-app" class="draggable window">
+    <div id="text-editor-app" data-app="text-editor" class="draggable window">
       <div class="window-bar">
         <span class="close"></span>
         <h4 class="window-title">Text Editor</h4>
@@ -45,7 +45,8 @@
         </p>
       </div>
       <div class="text-edit-content">
-        <textarea id="script-area"></textarea>
+        <textarea id="text-area"></textarea>
+        <textarea id="code-area"></textarea>
         <!-- <iframe src="https://www.constantinechutis.com" style="width: 100%; height: 600px;"></iframe> -->
       </div>
     </div>
@@ -146,19 +147,39 @@
       </svg>
 
     </div>
-    
+    <!-- Timer App -->
+    <div id="timer-app" class="draggable window">
+      <div class="window-bar">
+        <span class="close"></span>
+        <h4 class="window-title">Timer</h4>
+      </div>
+      <div class="timer-content">
+        <div id="timer">
+        </div>
+        <p style="display: inline;">
+        <button id="startbutton" class="timer-btn">Start
+        </button>
+        <button id="stopbutton" class="timer-btn">Stop
+        </button>
+        <button id="resetbutton" class="timer-btn">Reset
+        </button>
+        </p>
+      </div>
+    </div>
+
   </div>
 
   </div>
   <div id="dock-frame">
     <div id="dock">
-      <div id="text-editor-icon" class="icon">Aa</div>
+      <div id="text-editor-icon" data-app="text-editor" class="icon">Aa</div>
       <div id="timer-icon" class="icon"><i class="fas fa-stopwatch"></i></div>
       <div id="calculator-icon" class="icon"><i class="fas fa-calculator"></i></div>
       <div id="task-tracker-icon" class="icon"><i class="fas fa-tasks"></i></div>
       <div id="calendar-icon" class="icon"><i class="far fa-calendar-alt"></i></div>
       <div id="weather-icon" class="icon"><i class="fas fa-cloud-sun"></i></div>
       <div id="piano-icon" class="icon">♫</div>
+      <div id="settings-icon" class="icon"><i class="fas fa-cog"></i></div>
     </div>
   </div>
   <div id="desktop-widget"></div>

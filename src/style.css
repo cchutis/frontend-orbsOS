@@ -1,8 +1,14 @@
 /* Universal Styles */
+button:focus,
+input:focus {
+  outline: none;
+}
+
 body {
   width: 100%;
   height: 100%;
   background-color: #2B303C;
+  /* background: url('../img/test.png'); */
 }
 
 textarea {
@@ -13,6 +19,15 @@ textarea {
   -moz-box-shadow: none;
   box-shadow: none;
   resize: none;
+}
+/* Text Editor Switch */
+#code-area {
+  display: none;
+  background-color: #000;
+}
+
+#text-area {
+  display: block;
 }
 
 /* Window Styling */
@@ -304,6 +319,46 @@ input:checked+.slider:after {
   top: 20%;
   left: 2%;
 }
+
+#timer-app {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 60%;
+  height: 290px;
+  width: 400px;
+}
+/* Timer Style */
+.timer-content {
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#timer {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 10em;
+  color: #FFF;
+}
+.timer-btn {
+  background-color: #2B303C;
+  color: #fff;
+  width: 100px;
+  height: 40px;
+  border: 0;
+  border-radius: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.timer-btn:hover {
+  background-color: #2196F3;
+}
+.timer-btn:active {
+  background-color: #E9B427;
+}
+
 
 
 /* Calculator Style */
