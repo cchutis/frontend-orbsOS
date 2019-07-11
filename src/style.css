@@ -532,3 +532,21 @@ i {
   background-color: greenyellow;
   color: #2B303C;
 }
+/* Task Tracker Styles */
+/* Buttons */
+.task-submit {
+  
+}
+
+.task-edit-save {
+
+}
+
+.task-delete {
+
+}
+
+/* List Items */
+.show-task {
+  
+}
