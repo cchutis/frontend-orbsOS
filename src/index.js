@@ -661,16 +661,16 @@ function run() {
 function createWeather(currentUser) {
   fetch('http://dataservice.accuweather.com/locations/v1/topcities/150?apikey=tQcG9le6zTobqSHGd6g2wWrTOKhB4yvP&language=en-us&details=false')
     .then(res => res.json())
-    .then(countries => {
-      for (const country of countries) {
-        if (country.Country.EnglishName === currentUser.location) {
-          const countryCode = country.Key
-          fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${countryCode}?apikey=tQcG9le6zTobqSHGd6g2wWrTOKhB4yvP&language=en-us&details=false&metric=true`)
+    .then(cities => {
+      for (const city of cities) {
+        if (city.EnglishName === currentUser.location) {
+          const cityKey = city.Key
+          fetch(`http://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=tQcG9le6zTobqSHGd6g2wWrTOKhB4yvP&language=en-us&details=false`)
             .then(res => res.json())
             .then(place => {
-              const temperature = place.DailyForecasts[0].Temperature.Maximum.Value
+              const temperature = place[0].Temperature.Imperial.Value
               console.log(temperature)
-              const details = place.Headline.Text
+              const details = place[0].WeatherText
               console.log(details)
             })
         }
