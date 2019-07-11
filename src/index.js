@@ -21,6 +21,24 @@ function updateTime() {
 setInterval(updateTime, 1000);
 document.addEventListener("DOMContentLoaded", updateTime())
 
+//Close Window Event Listener
+document.addEventListener('click', function(e) {
+    if(e.target.className === 'close') {
+        e.target.parentNode.parentNode.style.display = 'none';
+    } 
+    // if(e.target.className === 'icon') {
+    //     e.target.style.backgroundColor = '#000';
+    // }
+})
+
+// Z-index toggle
+document.addEventListener('click', function(e) {
+    if(e.target.className === 'window') {
+        document.querySelectorAll('.window').style.zIndex = '0'
+        e.target.style.zIndex = '1'
+    }
+})
+
 //Weather Widget
 
 
@@ -37,10 +55,17 @@ for (let i = 0, len = draggableElems.length; i < len; i++) {
     });
     draggies.push(draggie);
 }
-
-
 // increase text size text editor
-const textArea = document.querySelector('#script-area')
+const textArea = document.querySelector('#text-area')
+
+// Text Area Code/Text Switch
+function textCodeSwitch() {
+    const textArea = document.querySelector('#text-area')
+    const codeArea = document.querySelector('#code-area')
+    textArea.style.display = 'none';
+    codeArea.style.display = 'block';
+}
+
 // const increaseSizeButton = document.querySelector('.increase-font')
 // increaseSizeButton.addEventListener('click', function() {
 //     textArea.style.fontSize += 1 + 'px';
@@ -72,6 +97,9 @@ dock.addEventListener('click', function(e) {
     }
     if(e.target.id === 'piano-icon') {
         document.querySelector('#piano-app').style.display = 'block';
+    }
+    if(e.target.id === 'timer-icon') {
+        document.querySelector('#timer-app').style.display = 'block';
     }
 })
 
@@ -388,4 +416,75 @@ highASharp.addEventListener('click', function (e) {
 
 highB.addEventListener('click', function (e) {
     high_b_audio.play()
+})
+
+// Timer App
+
+document.addEventListener('DOMContentLoaded', function () {
+    const timer = document.querySelector('#timer')
+    timer.innerText = "0:00"
+
+    const startButton = document.querySelector('#startbutton')
+    startButton.innerText = "Start"
+
+    const stopButton = document.querySelector('#stopbutton')
+    stopButton.innerText = "Stop"
+
+    const resetButton = document.querySelector('#resetbutton')
+    resetButton.innerText = "Reset"
+
+    startButton.addEventListener('click', function (e) {
+        let twoTimer = timer.innerText.split(':')
+        let minutes = twoTimer[0]
+        let seconds = twoTimer[1]
+        const clock = setInterval(() => {
+            if (seconds < 9) {
+                seconds++
+                timer.innerHTML = Math.floor(seconds / 60) + ":0" + seconds
+            } else if (seconds >= 9 && seconds < 59) { //50 dif
+                seconds++
+                timer.innerHTML = Math.floor(seconds / 60) + ":" + seconds
+            } else if (seconds >= 59 && seconds < 69) { //10 dif
+                seconds++
+                timer.innerHTML = Math.floor(seconds / 60) + ":0" + (seconds - (60 * Math.floor(seconds / 60)))
+            } else if (seconds >= 69 && seconds < 119) { //50 dif
+                seconds++
+                timer.innerHTML = Math.floor(seconds / 60) + ":" + (seconds - (60 * Math.floor(seconds / 60)))
+            } else if (seconds >= 119 && seconds < 129) { //10 dif
+                seconds++
+                timer.innerHTML = Math.floor(seconds / 60) + ":0" + (seconds - (60 * Math.floor(seconds / 60)))
+            } else if (seconds >= 129 && seconds < 179) {
+                seconds++
+                timer.innerHTML = Math.floor(seconds / 60) + ":" + (seconds - (60 * Math.floor(seconds / 60)))
+            } else if (seconds >= 179 && seconds < 189) {
+                seconds++
+                timer.innerHTML = Math.floor(seconds / 60) + ":0" + (seconds - (60 * Math.floor(seconds / 60)))
+            } else if (seconds >= 189 && seconds < 239) {
+                seconds++
+                timer.innerHTML = Math.floor(seconds / 60) + ":" + (seconds - (60 * Math.floor(seconds / 60)))
+            } else if (seconds >= 239 && seconds < 249) {
+                seconds++
+                timer.innerHTML = Math.floor(seconds / 60) + ":0" + (seconds - (60 * Math.floor(seconds / 60)))
+            } else if (seconds >= 249 && seconds < 299) {
+                seconds++
+                timer.innerHTML = Math.floor(seconds / 60) + ":" + (seconds - (60 * Math.floor(seconds / 60)))
+            } else if (seconds >= 299 && seconds < 309) {
+                seconds++
+                timer.innerHTML = Math.floor(seconds / 60) + ":0" + (seconds - (60 * Math.floor(seconds / 60)))
+            } else if (seconds >= 309 && seconds < 359) {
+                seconds++
+                timer.innerHTML = Math.floor(seconds / 60) + ":" + (seconds - (60 * Math.floor(seconds / 60)))
+            }
+        }, 1000)
+
+        stopButton.addEventListener('click', function (e) {
+            clearTimeout(clock)
+        })
+
+        resetButton.addEventListener('click', function (e) {
+            timer.innerText = "0:00"
+            clearTimeout(clock)
+        })
+    })
+
 })
