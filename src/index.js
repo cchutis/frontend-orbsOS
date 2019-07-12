@@ -4,26 +4,33 @@ const userDataUrl = `http://localhost:3000/users/${userId}`
 // NOT FINISHED ^^^^^^
 let currentUser;
 //document loaded?
-document.addEventListener('DOMContentLoaded', getUser());
+document.addEventListener('DOMContentLoaded', function() {
+    getUser()
+})
 // get user instance
 function getUser() {
     fetch(userDataUrl)
     .then(r => r.json())
     .then(user => {
-      currentUser = user
-      createWeather(currentUser)
+        currentUser = user
+        getWeather(currentUser)
+        populateSettings()
     })
 }
+
 //Settings for User (populate and edit)
-const userSettings = document.querySelector('.settings-options');
+function populateSettings() {
+    const userSettings = document.querySelector('.settings-options');
     userSettings.innerHTML = `
-    <img src="${currentUser.photo}">
-    <p>Name:<h3>${currentUser.name}</h3></p>
-    <p>Location:<h3>${currentUser.location}</h3></p>
+    <img class="settings-picture" src="${currentUser.photo}">
+    <p>Name: <span>${currentUser.name}</span> <button data-row="name" class="edit">Change</button></p>
+    <p> Zip Code: <span>${currentUser.location}</span> <button data-row="name" class="edit">Change</button></p>
     `
+}
+document.getElementById('getval').addEventListener('change', readURL, true);
 // console.log(localStorage.getItem("user"))
 // Time Widget
-const timeWidget = document.querySelector('#desktop-widget')
+const timeDiv = document.querySelector('#time')
 function updateTime() {
     let currentTime = new Date()
     let hours = currentTime.getHours()
@@ -32,15 +39,15 @@ function updateTime() {
         minutes = "0" + minutes
     }
     if (hours > 12) {
-        fixedHours = hours - 12
+        hours -= 12
     }
-    let t_str = fixedHours + ":" + minutes + " ";
+    let t_str = hours + ":" + minutes + " ";
     if (hours > 11) {
         t_str += "PM";
     } else {
         t_str += "AM";
     }
-    timeWidget.innerHTML = t_str;
+    timeDiv.innerHTML = t_str;
 }
 setInterval(updateTime, 1000);
 document.addEventListener("DOMContentLoaded", updateTime())
@@ -62,8 +69,6 @@ document.addEventListener('click', function(e) {
         e.target.style.zIndex = '1'
     }
 })
-
-//Weather Widget
 
 
 // get all draggie elements
@@ -131,6 +136,9 @@ dock.addEventListener('click', function(e) {
     }
     if(e.target.id === 'settings-icon') {
         document.querySelector('#settings-app').style.display = 'block';
+    }
+    if(e.target.id === 'browser-icon') {
+        document.querySelector('#browser-app').style.display = 'block';
     }
 })
 
@@ -666,23 +674,59 @@ function run() {
     document.body.appendChild(newScript);
 }
 
-//Create Weather
-function createWeather(currentUser) {
-  fetch('http://dataservice.accuweather.com/locations/v1/topcities/150?apikey=tQcG9le6zTobqSHGd6g2wWrTOKhB4yvP&language=en-us&details=false')
+//Get Weather
+function getWeather(currentUser) {
+   fetch(`http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=tAPoDTVPV503OW9gp9TPy030hXDYTC3a&q=${currentUser.location}`)
     .then(res => res.json())
-    .then(countries => {
-      for (const country of countries) {
-        if (country.Country.EnglishName === currentUser.location) {
-          const countryCode = country.Key
-          fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${countryCode}?apikey=tQcG9le6zTobqSHGd6g2wWrTOKhB4yvP&language=en-us&details=false&metric=true`)
-            .then(res => res.json())
-            .then(place => {
-              const temperature = place.DailyForecasts[0].Temperature.Maximum.Value
-              console.log(temperature)
-              const details = place.Headline.Text
-              console.log(details)
-            })
-        }
-      }
+    .then(locationData => { 
+        let key = locationData[0].Key
+        fetch(`http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=tAPoDTVPV503OW9gp9TPy030hXDYTC3a`)
+        .then(r => r.json())
+        .then(conditions => {
+            const temp = conditions[0].Temperature.Imperial.Value
+            const condition = conditions[0].WeatherIcon
+            createWeather(temp, condition)
+        })
     })
+}
+
+// Create Weather & Add to Desktop
+function createWeather(temp, condition) {
+    const weatherDiv = document.querySelector('#weather')
+    const h1 = document.createElement('h1')
+    h1.innerText = `${temp}º`
+    h1.className = 'weather-temp'
+    const img = document.createElement('img')
+    img.src = `./img/weather-icons/${condition}.svg`
+    img.className = 'weather-icon'
+    weatherDiv.appendChild(h1)
+    weatherDiv.appendChild(img)
+}
+// Internet Browser App
+const searchBar = document.querySelector('.search-bar')
+const searchForm = document.querySelector('.search-form')
+const goButton = searchBar.querySelector('.search-btn')
+const browserArea = document.querySelector('.browser-content')
+const iframe = document.querySelector('iframe')
+
+searchForm.addEventListener('submit', function(e) {
+    e.preventDefault()
+    if(searchBar != "") {
+        const url = searchForm.querySelector('#url-bar').value
+        browserArea.innerHTML = `<iframe src="${url}" style="width: 100%; height: 600px; border: 0;"></iframe>`
+    }
+})
+
+// Set Wallpaper
+
+document.getElementById('getval').addEventListener('change', readURL, true);
+function readURL() {
+    var file = document.getElementById("getval").files[0];
+    var reader = new FileReader();
+    reader.onloadend = function () {
+        document.querySelector('body').style.backgroundImage = "url(" + reader.result + ")";
+    }
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {}
 }
