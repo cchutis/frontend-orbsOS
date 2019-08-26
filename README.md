@@ -1,3 +1,5 @@
+![alt text](https://i.imgur.com/iNQZ0na.jpg "orbsOS Splash Image")
+
 # ORBS OS 
 Vanilla JS/Electron Mock OS App
 
