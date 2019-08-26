@@ -74,6 +74,7 @@ h1 {
     background-color: lightgray;
     margin: 0 40px;
     cursor: pointer;
+    background-size: cover;
 }
 
 .create-user-icon {

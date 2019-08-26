@@ -61,7 +61,7 @@ startButton.addEventListener('click', function () {
 let image
 function takeSnapshot() {
     Webcam.snap(function (data_uri) {
-        document.querySelector('.photo-upload').style.backgroundImage = `url('${data_uri}')`;
+        document.querySelector('.photo-upload').style.backgroundImage = `url('img/${data_uri}')`;
         enabled = false
         Webcam.reset()
         document.querySelector('.snap-photo-btn').style.display = 'none'

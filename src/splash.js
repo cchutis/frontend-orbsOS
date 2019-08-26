@@ -28,7 +28,7 @@ function getUsers() {
         div.dataset.id = user.id
         div.dataset.name = user.name
         div.style.backgroundImage = `url('${user.photo}')`
-        div.style.backgroundSize = '100%'
+        div.style.backgroundSize = 'cover'
 
 
         userAccountsArea.insertBefore(div, userAccountsArea.childNodes[0])

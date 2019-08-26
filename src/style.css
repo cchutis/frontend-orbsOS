@@ -122,13 +122,14 @@ textarea {
 .container {
   height: 100vh;
   width: 100vw;
-  
+
   z-index: 0;
 }
 
 .text-edit-content {
   height: 100%;
 }
+
 .browser-content {
   height: 100%;
 }
@@ -322,6 +323,7 @@ input:checked+.slider:after {
   top: 20%;
   left: 35%;
 }
+
 #browser-app {
   display: none;
   position: fixed;
@@ -628,9 +630,10 @@ i {
   /* position: absolute;
   top: 10%;
   right: 40%; */
-  /* width: 250px; */
+  width: 250px;
   filter: invert(100%);
 }
+
 /* Internet Browser */
 .search-bar {
   display: flex;
@@ -640,6 +643,7 @@ i {
   width: 100%;
   height: 50px;
 }
+
 #url-bar {
   font-family: 'Varela Round', sans-serif;
   font-size: 24px;
@@ -648,12 +652,13 @@ i {
   color: #2196F3;
   padding-left: 20px;
 }
+
 .search-btn {
   width: 100px;
   height: 30px;
   cursor: pointer;
   font-family: 'Varela Round',
-  sans-serif;
+    sans-serif;
   font-size: 20px;
   border: 0;
   border-radius: 20px;
@@ -662,8 +667,9 @@ i {
 }
 
 .search-btn:hover {
-  background-color: #E9B427; 
+  background-color: #E9B427;
 }
+
 .search-form {
   display: flex;
   flex-direction: row;
@@ -676,11 +682,73 @@ i {
 
 /* Task Tracker Styles */
 /* Buttons */
-.task-submit {}
+.new-task-button,
+.task-edit-save,
+.task-delete,
+.task-submit {
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 16px;
+  border: 0;
+  border-radius: 20px;
+  background-color: #2B303C;
+  color: #FFF;
+}
+
+.new-task-button:hover,
+.task-edit-save:hover,
+.task-submit:hover {
+  background-color: #2196F3;
+}
+
+.task-delete:hover {
+  background-color: rgb(134, 35, 36);
+}
 
 .task-edit-save {}
 
-.task-delete {}
+.task-delete {
+  width: 60px;
+  height: 20px;
+  font-size: 12px;
+  margin-left: 20px;
+}
 
 /* List Items */
-.show-task {}
+.show-task {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 18px;
+  padding: 10px;
+
+}
+
+.show-task:hover {
+  color: #2196F3;
+  cursor: pointer;
+}
+
+.task-headline {
+  font-family: 'Varela Round', sans-serif;
+
+}
+
+.new-task-activity,
+.new-task-description,
+.description-area {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 20px;
+  /* background-color: #2196F3; */
+}
+
+.task-tracker-content {
+  margin: 30px;
+}
+
+#New-Task {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}

@@ -23,8 +23,8 @@ function populateSettings() {
     const userSettings = document.querySelector('.settings-options');
     userSettings.innerHTML = `
     <img class="settings-picture" src="${currentUser.photo}">
-    <p>Name: <span>${currentUser.name}</span> <button data-row="name" class="edit">Change</button></p>
-    <p> Zip Code: <span>${currentUser.location}</span> <button data-row="name" class="edit">Change</button></p>
+    <p>Name: <span>${currentUser.name}</span> <button data-row="name" class="edit-name">Change</button></p>
+    <p> Zip Code: <span>${currentUser.location}</span> <button data-row="name" class="edit-zip-code">Change</button></p>
     `
 }
 document.getElementById('getval').addEventListener('change', readURL, true);
@@ -150,7 +150,7 @@ dock.addEventListener('click', function(e) {
 document.addEventListener('DOMContentLoaded', function () {
 
     const calculator = {
-        displayValue: '0',
+        displayValue: '',
         firstOperand: null,
         waitingForSecondOperand: false,
         operator: null,
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function resetCalculator() {
-        calculator.displayValue = '0';
+        calculator.displayValue = '';
         calculator.firstOperand = null;
         calculator.waitingForSecondOperand = false;
         calculator.operator = null;
@@ -554,6 +554,7 @@ function getEverything() {
             const newTaskDiv = document.querySelector('#New-Task')
             const newTaskButton = document.createElement('button')
             newTaskButton.innerText = 'New Task'
+            newTaskButton.className = 'new-task-button'
             createNewTask(newTaskButton)
             newTaskDiv.appendChild(newTaskButton)
         })
@@ -581,9 +582,11 @@ function addEventListenerToDelete(deleteButton) {
 function appendDetails(task) {
     const thisActivity = document.createElement('h1')
     thisActivity.innerText = task.activity
+    thisActivity.className = 'task-headline'
 
     const thisDescription = document.createElement('textarea')
     thisDescription.innerText = task.description
+    thisDescription.className = 'description-area'
 
     const saveButton = document.createElement('button')
     saveButton.innerText = 'Save'
@@ -616,7 +619,11 @@ function addEventListenerToUpdate(saveButton) {
 function createNewTask(newTaskButton) {
     newTaskButton.addEventListener('click', function (e) {
         const newTaskActivity = document.createElement('textarea')
+        newTaskActivity.className = 'new-task-activity'
+        newTaskActivity.placeholder = 'Enter a Task'
         const newTaskDescription = document.createElement('textarea')
+        newTaskDescription.className = 'new-task-description'
+        newTaskActivity.placeholder = 'Describe your Task'
         const submitButton = document.createElement('button')
         submitButton.className = 'task-submit'
         submitButton.innerText = 'Submit'
